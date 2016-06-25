@@ -67,4 +67,3 @@ Possible enhancments ideas
 - Modify the view to UNION ALL values in a GTT.  The GTT would contain information from a modeling program such as SQL*Developer Data Modeler.
 
 
-

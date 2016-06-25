@@ -4,14 +4,18 @@ This is a collection of oddgen generators and associated template files
 ## Files
 This repository centers around a series of files.
 
+| File | Description |
+| --- | --- |
 |README.md|this file.  You should also find a `README.md` file for each collection.
 |ctan.xsd|defines both `ctan_index.xml` files and `MANIFEST.xsd` files
-|ctan_index.xml|a collection of `MANIFEST.xsd` found within this repository.  Updating of this file is not yet automated.
+|ctan_index.xml|a collection of `MANIFEST.xml` found within this repository.  Updating of this file is not yet automated.
 |MANIFEST.xml|Describes which files are needed for which version.  This is primarily for computer consumption.
 
 ## Collections
-Each collection constists of a series of files
+Each collection constists of a series of files.
 
+| File | Description |
+| --- | --- |
 |README.md| A readme file describing the generator
 |MANIFEST.xml| An XML describing which file(s) belong to which collection(s).  This is for automation tools like CTAN.
 | *.pks/*/pkb | (optional) PL/SQL code for oddgen Database Generators
@@ -19,8 +23,6 @@ Each collection constists of a series of files
 | *.xtend | (optional) files needed for eXtend engine
 | *.texml | (optional) files needed for tePLSQL engine
 | * | (optional) other files specific for a generator/engine
-
-Some code engines generators can use files for templates.  A collection is a combination of oddgen generator and (optionally) associated template files.
 
 ## How to help
 Your assistance with expansion of this repository is greatly needed.
@@ -33,12 +35,16 @@ To assist, please:
 - update ctan_index.xml based on ctan.xsd (to be automated)
 - do a pull request
 
+If you have a question, please ask as an Issue.
+
 ## directory structure
 The directory structure should follow this design
 `/{class}/{repository name}/`
 
 Where `{class}` is one of the following:
 
+| `{class}` | Description |
+| --- | --- |
 |DD|Data Dictionary API specific utilities
 |TAPI|Various Table API generators belong her
 |XAPI|Transactional API generators.  Thes span multiple tables and multiple DMLs. eg a Document Store where Version is a "gap-free sequential number"
@@ -58,6 +64,8 @@ The `<manifest>` describes all of the available versions of the generator that a
 
 The attributes for the `<manifest>` help descripe the collection itself.
 
+| Attribute | Description |
+| --- | --- |
 |guid|this should be a globaly unique identifier.  eg `select SYS_GUID() from dual` should do well.
 |name|This is a shortname used for display by applications
 |path|This is a URI that describes the path to this collection relative to the repository's `/ctan_index.xml` file.  As such, it is only needed in the `ctan_index.xml` file.  (automation is expected to update this value)
@@ -69,6 +77,8 @@ eg, you will need to define one `<version>` for the `FTLDB` engine and another `
 
 Attributes for each `<version>` are:
 
+| Attribute | Req? | Description |
+| --- | --- | --- |
 | engine | required |describes code generation engine this version uses (eg `FTLDB`, `tePLSQL`, `eXtend`, `plsql`, etc.).  This helps with searching. |
 | major | required | the `2` in a version string such as `2.3.0 XP1` |
 | minor | required | the `3` in a version string such as `2.3.0 XP1` |
@@ -80,12 +90,16 @@ Each `<file>` is a URI releative to the location of the `MANIFEST.xml` found wit
 
 The attributes for `<file>` are
 
+| Attribute | Description |
+| --- | --- |
 |path|this is a path relative to the location of the collection's `MANIFEST.xml`.  Please consider using `./filename` for clarity.
 |type|This describes how search+retrieval applications should process the file |
 |order|This describes in which order to process the file. |
 
 The values for `type` are
 
+| Type | Description |
+| --- | --- |
 |readme| the README file for this version |
 |sql|run SQL |
 |ignore|files that are ignored (eg `*.java` files are `ignore` while their `*.ant` file is used to compile it |
@@ -97,4 +111,6 @@ eg `<tag>TAPI</tag>`
 ## ctan_index.xml
 This file is a directory listing for this repository.
 It should be an aggregation of all the `MANIFEST.xml` files that have their `/manifest/path` value update to be the location where the file was found (with respect to the `ctan_index.xml` file)
+
+This is primarily for search+retrival applications.
 

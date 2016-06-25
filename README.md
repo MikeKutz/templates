@@ -72,7 +72,7 @@ The attributes for the `<manifest>` help descripe the collection itself.
 
 The `<desription>` element should be a plain text description of the collection.  This is used as a "tooltip" from within CTAN-like applications.  Details of the collection should be found in the `README.md` file (which can be version specific.
 
-Each `<version>` contains a list of `<file>`s that are specific to that version.  Each version should contain a single `<version>` entry.  If you have a multi-engine generator, than you will need to define a `<version>` for each engine.
+Each `<version>` contains a list of `<file>`s that are specific to that version in addition to a list of `<requirements>`.  Each version should contain a single `<version>` entry.  If you have a multi-engine generator, than you will need to define a `<version>` for each engine.
 eg, you will need to define one `<version>` for the `FTLDB` engine and another `<version>` for the `tePLSQL` engine.
 
 Attributes for each `<version>` are:
@@ -86,17 +86,18 @@ Attributes for each `<version>` are:
 | patch | optional | the `XP1` a version string such as in `2.3.0 XP1`.  sort order is String based. |
 | rdbms | optional | limits the version to a specific RDBMS. default is `oracle`.  This helps with searching |
 
-Each `<file>` is a URI releative to the location of the `MANIFEST.xml` found within the collection.  Each `<file>` can be reused in multiple `<version>`s.  This is especially usefule for the `README.md` file.
+Each `<file>` is a URI releative to the location of the `MANIFEST.xml` found within the collection.  For clarity, the relative path should start with "current directory" eg `./README.md`.
+
+Each `<file>` can be reused in multiple `<version>`s.  This is especially usefule for the `README.md` file.
 
 The attributes for `<file>` are
 
 | Attribute | Description |
 | --- | --- |
-|path|this is a path relative to the location of the collection's `MANIFEST.xml`.  Please consider using `./filename` for clarity.
 |type|This describes how search+retrieval applications should process the file |
-|order|This describes in which order to process the file. |
+|process_order|This describes in which order to process the file. |
 
-The values for `type` are
+The values for `type` can be.
 
 | Type | Description |
 | --- | --- |
@@ -104,6 +105,8 @@ The values for `type` are
 |sql|run SQL |
 |ignore|files that are ignored (eg `*.java` files are `ignore` while their `*.ant` file is used to compile it |
 |(others)|any tag can be uses.  Various search+retrieval applications could define how these are treated. |
+
+The `<requirements>` of a `<version>` is described by a single `<requirement>` entry.  This tag is not yet fully defined.
 
 `<tags>` contains a list of `<tag>`s which are just simple strings that can be used for searching for that perfect collection.
 eg `<tag>TAPI</tag>`

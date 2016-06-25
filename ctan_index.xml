@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CTAN xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="CTAN.xsd">
+<manifest guid="{ 47CB-D263-67DB-4FC9-8CDE-A596-A604-57E0 }" class="DD" name="dd"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="../../CTAN.xsd">
+  <versions>
+    <version engine="tePLSQL" major="0" minor="1" sub="0">
+      <file type="readme" process_order="0">./README.md</file>
+      <file type="sql" process_order="1">./TEPLSQL_DD_GENERATOR.pls</file>
+      <file type="sql" process_order="2">./TEPLSQL_DD_GENERATOR.plb</file>
+    </version>
+  </versions>
+  <tags>
+    <tag>DD</tag>
+    <tag>Data Dictionary</tag>
+    <tag>oracle</tag>
+    <tag>tePLSQL</tag>
+  </tags>
+  <requirements/>
+</manifest>
+</CTAN>

@@ -3,6 +3,7 @@ This is a collection of oddgen generators and associated template files
 
 ## Files
 This repository centers around a series of files.
+
 |README.md|this file.  You should also find a `README.md` file for each collection.
 |ctan.xsd|defines both `ctan_index.xml` files and `MANIFEST.xsd` files
 |ctan_index.xml|a collection of `MANIFEST.xsd` found within this repository.  Updating of this file is not yet automated.
@@ -10,6 +11,7 @@ This repository centers around a series of files.
 
 ## Collections
 Each collection constists of a series of files
+
 |README.md| A readme file describing the generator
 |MANIFEST.xml| An XML describing which file(s) belong to which collection(s).  This is for automation tools like CTAN.
 | *.pks/*/pkb | (optional) PL/SQL code for oddgen Database Generators
@@ -36,6 +38,7 @@ The directory structure should follow this design
 `/{class}/{repository name}/`
 
 Where `{class}` is one of the following:
+
 |DD|Data Dictionary API specific utilities
 |TAPI|Various Table API generators belong her
 |XAPI|Transactional API generators.  Thes span multiple tables and multiple DMLs. eg a Document Store where Version is a "gap-free sequential number"
@@ -54,6 +57,7 @@ You can use SQL*Developer to create/modify your `MANIFEST.xml` (and edit the `ct
 The `<manifest>` describes all of the available versions of the generator that are available. It contains a `<description>` of the generator, a single list of `<versions>`, an optional list of `<tags>`, and a set of `<requirements>`.
 
 The attributes for the `<manifest>` help descripe the collection itself.
+
 |guid|this should be a globaly unique identifier.  eg `select SYS_GUID() from dual` should do well.
 |name|This is a shortname used for display by applications
 |path|This is a URI that describes the path to this collection relative to the repository's `/ctan_index.xml` file.  As such, it is only needed in the `ctan_index.xml` file.  (automation is expected to update this value)
@@ -64,25 +68,28 @@ Each `<version>` contains a list of `<file>`s that are specific to that version.
 eg, you will need to define one `<version>` for the `FTLDB` engine and another `<version>` for the `tePLSQL` engine.
 
 Attributes for each `<version>` are:
-| engine | required |describes code generation engine this version uses (eg `FTLDB`, `tePLSQL`, `eXtend`, `plsql`, etc.).  This helps with searching.
-| major | required | the `2` in a version string such as `2.3.0 XP1`
-| minor | required | the `3` in a version string such as `2.3.0 XP1`
-| sub | required | the `0` in a version string such as `2.3.0 XP1`
-| patch | optional | the `XP1` a version string such as in `2.3.0 XP1`.  sort order is String based.
-| rdbms | optional | limits the version to a specific RDBMS. default is `oracle`.  This helps with searching
+
+| engine | required |describes code generation engine this version uses (eg `FTLDB`, `tePLSQL`, `eXtend`, `plsql`, etc.).  This helps with searching. |
+| major | required | the `2` in a version string such as `2.3.0 XP1` |
+| minor | required | the `3` in a version string such as `2.3.0 XP1` |
+| sub | required | the `0` in a version string such as `2.3.0 XP1` |
+| patch | optional | the `XP1` a version string such as in `2.3.0 XP1`.  sort order is String based. |
+| rdbms | optional | limits the version to a specific RDBMS. default is `oracle`.  This helps with searching |
 
 Each `<file>` is a URI releative to the location of the `MANIFEST.xml` found within the collection.  Each `<file>` can be reused in multiple `<version>`s.  This is especially usefule for the `README.md` file.
 
 The attributes for `<file>` are
+
 |path|this is a path relative to the location of the collection's `MANIFEST.xml`.  Please consider using `./filename` for clarity.
-|type|This describes how search+retrieval applications should process the file
-|order|This describes in which order to process the file.
+|type|This describes how search+retrieval applications should process the file |
+|order|This describes in which order to process the file. |
 
 The values for `type` are
-|readme| the README file for this version
-|sql|run SQL
-|ignore|files that are ignored (eg `*.java` files are `ignore` while their `*.ant` file is used to compile it
-|(others)|any tag can be uses.  Various search+retrieval applications could define how these are treated.
+
+|readme| the README file for this version |
+|sql|run SQL |
+|ignore|files that are ignored (eg `*.java` files are `ignore` while their `*.ant` file is used to compile it |
+|(others)|any tag can be uses.  Various search+retrieval applications could define how these are treated. |
 
 `<tags>` contains a list of `<tag>`s which are just simple strings that can be used for searching for that perfect collection.
 eg `<tag>TAPI</tag>`
